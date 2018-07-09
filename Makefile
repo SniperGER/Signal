@@ -1,5 +1,5 @@
-export PACKAGE_VERSION=1.3
-export THEOS_DEVICE_IP=169.254.216.133
+export PACKAGE_VERSION=1.4
+export THEOS_DEVICE_IP=192.168.178.31
 
 include $(THEOS)/makefiles/common.mk
 

@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D3CE12D1FB849C60067CDBD /* SGNRootListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D8DA7C21FB5A03400C1F15E /* SGNRootListController.m */; };
-		8DEB3D251FB6EB5E00B4988A /* SignalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB3D241FB6EB5E00B4988A /* SignalManager.m */; };
+		8DAE982220F3C15E002F2BDD /* SignalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB3D241FB6EB5E00B4988A /* SignalManager.m */; };
 		8DEB3D261FB6EF8E00B4988A /* Tweak.xm in Resources */ = {isa = PBXBuildFile; fileRef = 8D4D5EA11FB19E72001F6649 /* Tweak.xm */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +24,7 @@
 		8D8DA7C81FB5A03400C1F15E /* entry.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = entry.plist; sourceTree = "<group>"; };
 		8D8DA7C91FB5AB6700C1F15E /* SBTelephonyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTelephonyManager.h; sourceTree = "<group>"; };
 		8D8DA7CA1FB5AB7300C1F15E /* SBWiFiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBWiFiManager.h; sourceTree = "<group>"; };
+		8DAE982120F3C141002F2BDD /* SBAirplaneModeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBAirplaneModeController.h; sourceTree = "<group>"; };
 		8DC717A01FB5968E008F4A41 /* control */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
 		8DEB3D0B1FB6EB2600B4988A /* hiddenapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hiddenapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DEB3D231FB6EB5E00B4988A /* SignalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignalManager.h; sourceTree = "<group>"; };
@@ -52,6 +52,7 @@
 				8D4D5EA11FB19E72001F6649 /* Tweak.xm */,
 				8D8DA7C91FB5AB6700C1F15E /* SBTelephonyManager.h */,
 				8D8DA7CA1FB5AB7300C1F15E /* SBWiFiManager.h */,
+				8DAE982120F3C141002F2BDD /* SBAirplaneModeController.h */,
 				8DEB3D231FB6EB5E00B4988A /* SignalManager.h */,
 				8DEB3D241FB6EB5E00B4988A /* SignalManager.m */,
 				8D8DA7C11FB5A03400C1F15E /* signal */,
@@ -157,6 +158,7 @@
 					};
 					8DEB3D0A1FB6EB2600B4988A = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = EDV7C8ZP77;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -197,8 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D3CE12D1FB849C60067CDBD /* SGNRootListController.m in Sources */,
-				8DEB3D251FB6EB5E00B4988A /* SignalManager.m in Sources */,
+				8DAE982220F3C15E002F2BDD /* SignalManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +363,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphoneos;
 				SYSROOT = "$(THEOS)/sdks/iPhoneOS10.1.sdk";
 				TARGET = "iphone:10.2";
 				THEOS = /opt/theos;
@@ -407,6 +409,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphoneos;
 				SYSROOT = "$(THEOS)/sdks/iPhoneOS10.1.sdk";
 				TARGET = "iphone:10.2";
 				THEOS = /opt/theos;
@@ -439,6 +442,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = EDV7C8ZP77;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -455,7 +459,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = hiddenapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -493,6 +496,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = EDV7C8ZP77;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -503,7 +507,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = hiddenapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;

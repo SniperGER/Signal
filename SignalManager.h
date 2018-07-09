@@ -7,11 +7,15 @@
 #define PREFERENCES_PATH @"/var/mobile/Library/Preferences/ml.festival.signal.plist"
 #endif
 
-@class SBTelephonyManager, SBWiFiManager;
+#define kCFCoreFoundationVersionNumber_iOS_10_x_Max 1349.56
+#define kCFCoreFoundationVersionNumber_iOS_11_0 1443.00
+
+@class SBTelephonyManager, SBWiFiManager, SBAirplaneModeController;
 
 @interface SignalManager : NSObject {
 	SBTelephonyManager* telephonyManager;
 	SBWiFiManager* wifiManager;
+	SBAirplaneModeController* airplaneModeController;
 	
 	NSMutableDictionary* preferences;
 	BOOL connectionEnabled;

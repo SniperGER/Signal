@@ -1,6 +1,7 @@
 #import "SignalManager.h"
 #import "SBTelephonyManager.h"
 #import "SBWiFiManager.h"
+#import "SBAirplaneModeController.h"
 
 @implementation SignalManager
 
@@ -18,6 +19,10 @@
 	if (self = [super init]) {
 		telephonyManager = [objc_getClass("SBTelephonyManager") sharedTelephonyManager];
 		wifiManager = [objc_getClass("SBWiFiManager") sharedInstance];
+		
+		if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_11_0) {
+			airplaneModeController = [objc_getClass("SBAirplaneModeController") sharedInstance];
+		}
 		[self loadPreferences];
 		
 		if ([[preferences objectForKey:@"fakeCellularConnection"] boolValue]) {
@@ -94,7 +99,11 @@
 	
 	[self setCellularConnectionEnabled:[[preferences objectForKey:@"fakeCellularConnection"] boolValue]];
 	
-	[telephonyManager airplaneModeChanged];
+	if (airplaneModeController) {
+		[airplaneModeController airplaneModeChanged];
+	} else {
+		[telephonyManager airplaneModeChanged];
+	}
 }
 
 - (BOOL)cellularRadioCapabilityIsActive {
@@ -114,7 +123,7 @@
 }
 
 - (void)airplaneModeChanged {
-	if ([telephonyManager isInAirplaneMode]) {
+	if (airplaneModeController ? [airplaneModeController isInAirplaneMode] : [telephonyManager isInAirplaneMode]) {
 		connectionInitialized = NO;
 	} else {
 		if (connectionEnabled) {
@@ -124,14 +133,19 @@
 }
 
 - (void)_updateState {
+	if (connectionInitialized) {
+		[self _enableCellularConnection];
+	}
+	
 	if ([[preferences objectForKey:@"showWiFiOnSignalBars"] boolValue]) {
 		if (![wifiManager isAssociated]) {
-			connectionInitialized = NO;
 			[self _disableCellularConnection];
 		} else if ([wifiManager isAssociated] &&
 				   connectionEnabled &&
 				   !connectionInitialized &&
-				   ![telephonyManager isInAirplaneMode]) {
+				   (airplaneModeController
+					? ![airplaneModeController isInAirplaneMode]
+					: ![telephonyManager isInAirplaneMode])) {
 			[self _enableCellularConnection];
 		}
 	}
@@ -160,9 +174,7 @@
 
 - (id)operatorName {
 	if ([[preferences objectForKey:@"operatorNameShowAlways"] boolValue]) {
-		if ([[preferences objectForKey:@"operatorName"] length] > 0) {
 			return [preferences objectForKey:@"operatorName"];
-		}
 	}
 	
 	if ([[preferences objectForKey:@"fakeCellularConnection"] boolValue]) {
@@ -181,7 +193,7 @@
 }
 
 - (int)dataConnectionType:(int)currentConnectionType {
-	if ([telephonyManager isInAirplaneMode]) {
+	if (airplaneModeController ? [airplaneModeController isInAirplaneMode] : [telephonyManager isInAirplaneMode]) {
 		return currentConnectionType;
 	}
 	
@@ -220,7 +232,7 @@
 	[self _disableCellularConnection];
 	[telephonyManager _updateState];
 	
-	if (enabled && ![telephonyManager isInAirplaneMode]) {
+	if (enabled && (airplaneModeController ? ![airplaneModeController isInAirplaneMode] : ![telephonyManager isInAirplaneMode])) {
 		[self _enableCellularConnection];
 	}
 }

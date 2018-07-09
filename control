@@ -5,6 +5,7 @@ Version: 1.0
 Architecture: iphoneos-arm
 Description: Fake cellular connections
 Depiction: https://connect.festival.ml/depiction/ml.festival.signal
+Conflicts: gcs.cellular-data
 Maintainer: Sniper_GER <submissions@festival.ml>
 Author: Sniper_GER <submissions@festival.ml>
 Section: Tweaks
